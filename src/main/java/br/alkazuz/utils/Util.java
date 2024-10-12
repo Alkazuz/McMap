@@ -110,6 +110,13 @@ public class Util {
         return desc;
     }
 
+    public static String asmFieldDescToClassName(String desc) {
+        if (desc.contains("/")) {
+            return desc.substring(1, desc.length() - 1);
+        }
+        return desc.replace(";", "").replace("/", ".").replace("()L", "");
+    }
+
     public static String asmDescToClassName(String desc) {
         if (desc.contains("/")) {
             return desc.substring(3, desc.length() - 1);

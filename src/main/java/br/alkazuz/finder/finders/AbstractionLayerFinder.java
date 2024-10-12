@@ -167,8 +167,9 @@ public class AbstractionLayerFinder extends Finder {
         MethodNode getPlayerController = findMethodNode(classNode, "getPlayerController");
         FieldInsnNode fieldInsnNode = findFieldInsnNodeIndex(getPlayerController, 0);
         addField(ObfuscatedField.parse("net/minecraft/client/Minecraft", "playerController", fieldInsnNode));
-        addClass("net/minecraft/client/PlayerControllerMP", Util.asmDescToClassName(fieldInsnNode.desc).substring(1, fieldInsnNode.desc.length() - 1));
-        findAttackEntityMethos(Util.getClassNode(Util.asmDescToClassName(fieldInsnNode.desc).substring(1, fieldInsnNode.desc.length() - 1)));
+        System.out.println(Util.asmDescToClassName(fieldInsnNode.desc));
+        addClass("net/minecraft/client/PlayerControllerMP", Util.asmFieldDescToClassName(fieldInsnNode.desc));
+        findAttackEntityMethos(Util.getClassNode(Util.asmFieldDescToClassName(fieldInsnNode.desc)));
     }
 
     private void findAttackEntityMethos(ClassNode classNode) {
